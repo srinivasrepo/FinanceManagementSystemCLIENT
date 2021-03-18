@@ -1,0 +1,107 @@
+<div class="container">
+    <div align="center">
+        <div>
+            <div>
+                <h2>Card Dashboard</h2>
+            </div>
+            <div class="jumbotron mb-0">
+                <div class="panel panel-default">
+                    <div class="panel-body" *ngFor="let c of carddetails">
+                        <div>
+
+                            <p>Card Number:{{c.CardNumber}}</p>
+                            <p>Name:{{c.Name}}</p>
+                            <p>ValidTill:{{c.ValidTill}}</p>
+                            <p>CardType:{{c.CardType}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel panel-success mb-0">
+                    <div class="panel-heading">Activated</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div *ngFor="let credit of creditdetails" class="container">
+            <p>TOTAL CREDIT:&nbsp;{{credit.TotalCredit|currency:'INR':true}}</p>
+            <p>CREDIT USED:&nbsp;{{credit.Creditused|currency :'INR':true:'1.2-2'}}</p>
+            <p>REMAINING CREDIT:&nbsp;{{credit.RemainingCredit|currency :'INR':true: '1.2-2'}}</p>
+        </div>
+        <!--<div>
+            <div align="center">
+                <h4>PRODUCTS PURCHASED</h4>
+            </div>
+            <div *ngFor="let p of purchasedetails">
+                <p>PRODUCT NAME:{{p.ProductName}}</p>
+                <p>AMOUNT:{{p.CostPerUnit}}</p>
+                <p>PAID:{{p.AmountPayable}}</p>
+                <P>BALANCE:{{p.Balance}}</P>
+            </div>
+        </div>-->
+        <div class="container" align="center">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="tableCols">
+                        <th>PRODUCT NAME</th>
+                        <th>AMOUNT</th>
+                        <th>Quanity</th>
+                        <!--<th>PAID</th>
+                        <th>Balance</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center" *ngFor="let p of purchasedetails">
+                        <td>{{p.ProductName}}</td>
+                        <td>{{p.AmountPayable}}</td>
+                        <td>{{p.Quantity}}</td>
+                        <!--<td>{{p.AmountPaid}}</td>
+                        <td>{{p.Balance}}</td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div align="center">
+                <h4>RECENT TRANSACTIONS</h4>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="tableCols">
+
+                        <th>ORDER ID</th>
+                        <th>ORDER DATE</th>
+                        <th>AMOUNT PAID</th>
+                        <th>EMI TENURE IN MONTHS</th>
+                        <th>EMI AMOUNT per MONTH</th>
+                        <th>REMAINING EMI TENURE</th>
+                        <th>LAST PAYMENT DATE</th>
+                        <th>PAYMENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center" *ngFor="let t of transactiondetails;let i=index">
+                        <td>{{t.OrderID}}</td>
+                        <td>{{t.OrderDate| date:'mediumDate'}}</td>
+                        <td>{{t.AmountPayable|currency :'INR':true:'1.2-2'}}</td>
+                        <td>{{t.EMI_Tenure_In_Months}}</td>
+                        <td>{{t.BillAmountperMonth|currency :'INR':true:'1.2-2'}}</td>
+                        <td>{{t.Remaining_EMI_Tenures}}</td>
+                        <td>
+                            <div *ngIf="t.LastPaymentDate ==null">
+                                N/A
+                            </div>
+                            <div *ngIf="t.LastPaymentDate != null">
+                                {{t.LastPaymentDate| date:'mediumDate'}}
+                            </div>
+                        </td>
+                        <td><button class="btn btn-primary" (click)="EmiRepayment(t.OrderID)"
+                                [disabled]="t.Remaining_EMI_Tenures ==0">Pay Now</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

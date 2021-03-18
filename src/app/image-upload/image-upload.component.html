@@ -1,0 +1,73 @@
+<br>
+<br>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of Products" style="font-size: large;">
+                <td><img [src]='p.Image' height="215px" width="160px"></td>
+                <td> PRODUCT NAME: {{p.ProductName}}<br>
+                    PRODUCT DETAILS: {{p.ProductDetails}}<br>
+                    COST: {{p.CostPerUnit|currency:'INR':true}}<br>
+                    <a [routerLink]="['/ProductInfo/',p.ProductID]" style="font-size: larger;">Buy Now</a>
+                </td>
+                <hr>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr>
+
+<!--<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img [src]='productinfo.Image' height="150px" width="120px"></td>
+                <td> PRODUCT NAME: {{productinfo.ProductName}}<br>
+                    PRODUCT DETAILS: {{productinfo.ProductDetails}}<br>
+                    COST: {{productinfo.CostPerUnit}}<br>
+                </td>
+                <hr>
+            </tr>
+        </tbody>
+    </table>
+</div>-->
+
+
+<!--<div class="container">
+    <form #form="ngForm">
+        <div>
+            <label for="ProductName">ProductName: </label> &nbsp;&nbsp;
+            <input type="text" name="ProductName" #ProductName required [(ngModel)]="product.ProductName" #name=ngModel>
+        </div>
+        <div>
+            <label for="ProductDetails">ProductDetails: </label>&nbsp;&nbsp;
+            <input type="text" name="ProductDetails" #ProductDetails required [(ngModel)]="product.ProductDetails" #name=ngModel>
+        </div>
+        <div>
+            <label for="Image">Image: </label>&nbsp;&nbsp;
+            <input type="text"  #Image  name="Image" required [(ngModel)]="product.Image" #name=ngModel><br>
+        </div>
+        <div>
+            <label for="CostPerUnit">CostPerUnit: </label>&nbsp;&nbsp;
+            <input type="number" name="CostPerUnit" #CostPerUnit required [(ngModel)]="product.CostPerUnit" #name=ngModel>
+        </div>
+        <div>
+            <label for="AvailableQuantity">AvailableQuantity: </label>&nbsp;&nbsp;
+            <input type="number" name="AvailableQuantity" #AvailableQuantity required [(ngModel)]="product.AvailableQuantity" #name=ngModel>
+        </div>
+        <button class="btn btn-info">Add Product</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    </form>
+</div>-->

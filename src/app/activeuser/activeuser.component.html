@@ -1,0 +1,108 @@
+<h3 style="text-align: center; color: darkblue;">Activated Users</h3>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Card Type</th>
+            <th>Bank Name</th>
+            <th>IFSC Code</th>
+            <th>Account Number</th>
+            <th>Activation Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of activateduserinfo">
+                <td>{{u.UserName}}</td>
+                <td>{{u.Name}}</td>
+                <td>{{u.DateofBirth| date:'mediumDate'}}</td>
+                <td>{{u.PhoneNo}}</td>
+                <td>{{u.Email}}</td>
+                <td>{{u.Address}}</td>
+                <td>{{u.CardType}}</td>
+                <td>{{u.SelectBank}}</td>
+                <td>{{u.IFSC_Code}}</td>
+                <td>{{u.AccountNumber}}</td>
+                <td>{{u.ActivationStatus}}</td>
+                <td><button class="btn btn-info" type="submit" (click)="fetchuserbyName(u.UserName)">Edit</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<h3 style="text-align: center; color: darkblue;">Edit UserInfo</h3>
+<div class="jumbotran">
+    <form>
+        <div class="form-group">
+            <label for="Name">Name: </label> &nbsp;&nbsp;<br>
+            <input type="text" class="form-control" name="Name" required [(ngModel)]="useredit.Name" #Name=ngModel>
+        </div>
+        <div *ngIf="!Name?.valid && (Name?.dirty|| Name?.touched)"class= "error">
+            <div *ngIf="Name.errors.required">
+                <small class="text-danger">Name is Required</small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="PhoneNo">Phone Number: </label> &nbsp;&nbsp;<br>
+            <input type="number" class="form-control" name="PhoneNo" required [(ngModel)]="useredit.PhoneNo" #PhoneNo=ngModel pattern="^[6-9][0-9]{9}$" maxlength="10" minlength="10">
+        </div>
+        <div *ngIf="!PhoneNo?.valid && (PhoneNo?.dirty|| PhoneNo?.touched)"class= "error">
+            <div *ngIf="PhoneNo.errors.required">
+                <small class="text-danger">Phone Number is Required</small>
+            </div>
+            <div *ngIf=PhoneNo.errors.pattern>
+                <small class="text-danger">Invalid Phone Number</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Email">Email: </label> &nbsp;&nbsp;<br>
+            <input type="text" class="form-control" name="Email" [(ngModel)]="useredit.Email" #Email=ngModel required email>
+        </div>
+        <div *ngIf="!Email?.valid && (Email?.dirty|| Email?.touched)"class= "error">
+            <div *ngIf="Email.errors.required">
+                <small class="text-danger">Email is Required</small>
+            </div>
+            <div *ngIf=Email.errors.email>
+                <small class="text-danger">Enter a valid email-address</small>
+            </div>
+    
+        </div>
+        <div class="form-group">
+            <label for="Address">Address: </label> &nbsp;&nbsp;<br>
+            <input type="text" name="Address" class="form-control" required [(ngModel)]="useredit.Address" #Address=ngModel>
+        </div>
+        <div *ngIf="!Address?.valid && (Address?.dirty|| Address?.touched)"class= "error">
+            <div *ngIf="Address.errors.required">
+                <small class="text-danger">Address is Required</small>
+            </div>
+        </div>
+        <!--<div>
+            <label for="CardType">CardType: </label> &nbsp;&nbsp;
+            <input type="radio" name="CardType" value="Gold"[(ngModel)]=useredit.CardType>Gold &nbsp;&nbsp;
+        <input type="radio" name="CardType" value="Titanium"[(ngModel)]=useredit.CardType>Titanium
+        </div> -->
+        <!--<div>
+            <label for="SelectBank">SelectBank: </label> &nbsp;&nbsp;
+            <input type="text" name="SelectBank" required [(ngModel)]="useredit.SelectBank" #name=ngModel>
+        </div> 
+        <div>
+            <label for="IFSC_Code">IFSC_Code: </label> &nbsp;&nbsp;
+            <input type="text" name="IFSC_Code" required [(ngModel)]="useredit.IFSC_Code" #name=ngModel>
+        </div> 
+        <div>
+            <label for="AccountNumber">AccountNumber: </label> &nbsp;&nbsp;
+            <input type="number" name="AccountNumber" required [(ngModel)]="useredit.AccountNumber" #name=ngModel>
+        </div>-->
+         
+        <button type="submit" class="btn btn-success"(click)="updateUserInfo(useredit)">Update</button>         
+        
+    </form>
+</div>
